@@ -2,40 +2,48 @@ package com.ciandt.fullstack.project.controller;
 
 import com.ciandt.fullstack.project.model.Customer;
 import com.ciandt.fullstack.project.repository.CustomerRepository;
+import com.ciandt.fullstack.project.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
 @RequestMapping("/customer")
 @CrossOrigin
 public class CustomerController {
-
     @Autowired
     private CustomerRepository customerRepository;
 
-    @PostMapping("/add")
-    public Customer saveCustomer(@RequestBody Customer customer) {
-        return customerRepository.save(customer);
+    @Autowired
+    private CustomerService customerService;
 
+    @PostMapping("/addCustomer")
+    public ResponseEntity<Customer> saveCustomer(@Valid @RequestBody Customer customer) {
+        return ResponseEntity.ok(customerService.save(customer));
     }
 
-    @GetMapping("/getAll")
+    @GetMapping("/getAllCustomer")
     public List<Customer> getAllCustomer() {
         return customerRepository.findAll();
     }
 
-    @GetMapping("/get/{id}")
+    @GetMapping("/getCustomer/{id}")
     public Customer getCustomerById(@PathVariable Long id) {
         return customerRepository.findById(id).get();
     }
 
+//    @PutMapping("/customer")
+//    public Customer updateCustomer(@RequestBody Customer customer) {
+//        return customerRepository.save(customer);
+//    }
+
     @PutMapping("/customer")
-    public Customer updateCustomer(@RequestBody Customer customer) {
-        return customerRepository.save(customer);
+    public ResponseEntity<Customer> updateCustomer(@RequestBody @Valid Customer customer) {
+        return ResponseEntity.ok(customerService.updateCustomer(customer));
     }
 
     @DeleteMapping("/customer/{id}")
@@ -43,6 +51,4 @@ public class CustomerController {
         customerRepository.deleteById(id);
         return new ResponseEntity<HttpStatus>(HttpStatus.NO_CONTENT);
     }
-
-
 }
