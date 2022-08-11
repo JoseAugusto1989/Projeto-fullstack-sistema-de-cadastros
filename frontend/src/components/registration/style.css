@@ -1,0 +1,9 @@
+#float-label:focus-within label {
+  transform: translate(0, 2px) scale(0.75);
+  color: #999;
+}
+
+#float-label .Active {
+  transform: translate(0, 2px) scale(0.75);
+  color: #999;
+}
