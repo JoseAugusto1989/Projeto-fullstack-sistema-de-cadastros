@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Header from "../header/Index";
 import Input from "../input/Input";
 import "./style.css";
 
@@ -38,6 +39,7 @@ const RegistrationCustomer = () => {
 
   return (
     <div>
+      <Header />
       <h1>Cadastro de Clientes</h1>
       <form>
         <Input

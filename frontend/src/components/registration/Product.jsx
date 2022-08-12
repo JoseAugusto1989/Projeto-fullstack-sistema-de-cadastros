@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Header from "../header/Index";
 import Input from "../input/Input";
 import { FloatContainer, InputFloat, LabelFloat } from "./Registration.style";
 
@@ -33,6 +34,7 @@ const RegistrationProduct = () => {
 
   return (
     <div>
+        <Header />
       <h1>Cadastro de Produtos</h1>
       <form>
         <Input
