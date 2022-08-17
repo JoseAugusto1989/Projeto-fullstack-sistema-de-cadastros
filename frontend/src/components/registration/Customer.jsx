@@ -126,7 +126,7 @@ const RegistrationCustomer = () => {
         />
 
         <div>
-          <Button variant="contained" onClick={handleClick} disableElevation>
+          <Button onClick={handleClick} disableElevation>
             Cadastrar
           </Button>
         </div>

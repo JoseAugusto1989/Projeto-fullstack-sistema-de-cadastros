@@ -2,17 +2,16 @@ import React, { useState } from "react";
 import Header from "../header/Index";
 import Input from "../input/Input";
 import { Button } from "./Button.style";
-import { FloatContainer, InputFloat, LabelFloat } from "./Registration.style";
 
 const RegistrationProduct = () => {
   const [name, setName] = useState("");
   const [salePrice, setSalePrice] = useState("");
   const [purchasePrice, setPurchasePrice] = useState("");
-  const [gain, setGain] = useState("");
+  // const [gain, setGain] = useState("");
   const [quantityInStock, setQuantityInStock] = useState("");
   const [provider, setProvider] = useState("");
 
-  const [registration, SetRegistration] = useState([]);
+  // const [registration, SetRegistration] = useState([]);
 
   const handleClick = (e) => {
     e.preventDefault();

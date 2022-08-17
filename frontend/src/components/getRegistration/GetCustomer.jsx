@@ -11,6 +11,8 @@ const GetCustomer = () => {
       });
   }, []);
 
+  console.log(registration)
+
   return (
     <div>
       <h3>Lista de Clientes</h3>
@@ -18,17 +20,28 @@ const GetCustomer = () => {
       <div>
         <table>
           <tbody>
+            <tr>
+              <th>Nome</th>
+              <th>Email</th>
+              <th>Telefone</th>
+              <th>CPF</th>
+              <th>Profissão</th>
+              <th>Endereço</th>
+              <th>N°</th>
+              <th>Bairro</th>
+              <th>Cidade</th>
+            </tr>
             {registration.map((customer) => (
               <tr key={customer.id}>
-                <td>Nome: {customer.name}</td>
-                <td>Email: {customer.email}</td>
-                <td>Telefone: {customer.phone}</td>
-                <td>CPF: {customer.cpf}</td>
-                <td>Profissão: {customer.occupation}</td>
-                <td>Endereço: {customer.address}</td>
-                <td>N°: {customer.number}</td>
-                <td>Bairro: {customer.district}</td>
-                <td>Cidade: {customer.city}</td>
+                <td>{customer.name}</td>
+                <td>{customer.email}</td>
+                <td>{customer.phone}</td>
+                <td>{customer.cpf}</td>
+                <td>{customer.occupation}</td>
+                <td>{customer.address}</td>
+                <td>{customer.number}</td>
+                <td>{customer.district}</td>
+                <td>{customer.city}</td>
               </tr>
             ))}
           </tbody>
