@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import Footer from "../footer/Index";
 import Header from "../header/Index";
 import Input from "../input/Input";
+import { Button } from "./Button.style";
 import "./style.css";
 
 const RegistrationCustomer = () => {
@@ -124,11 +126,12 @@ const RegistrationCustomer = () => {
         />
 
         <div>
-          <button variant="contained" onClick={handleClick} disableElevation>
+          <Button variant="contained" onClick={handleClick} disableElevation>
             Cadastrar
-          </button>
+          </Button>
         </div>
       </form>
+      <Footer />
     </div>
   );
 };

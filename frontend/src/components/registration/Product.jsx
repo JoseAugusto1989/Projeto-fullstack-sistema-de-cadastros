@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Header from "../header/Index";
 import Input from "../input/Input";
+import { Button } from "./Button.style";
 import { FloatContainer, InputFloat, LabelFloat } from "./Registration.style";
 
 const RegistrationProduct = () => {
@@ -83,9 +84,9 @@ const RegistrationProduct = () => {
         />
 
         <div>
-          <button variant="contained" onClick={handleClick} disableElevation>
+          <Button variant="contained" onClick={handleClick} disableElevation>
             Cadastrar
-          </button>
+          </Button>
         </div>
       </form>
     </div>

@@ -41,12 +41,12 @@ public class CustomerController {
 //        return customerRepository.save(customer);
 //    }
 
-    @PutMapping("/customer")
+    @PutMapping("/updateCustomer")
     public ResponseEntity<Customer> updateCustomer(@RequestBody @Valid Customer customer) {
         return ResponseEntity.ok(customerService.updateCustomer(customer));
     }
 
-    @DeleteMapping("/customer/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<HttpStatus> deleteCustomerById(@PathVariable Long id) {
         customerRepository.deleteById(id);
         return new ResponseEntity<HttpStatus>(HttpStatus.NO_CONTENT);

@@ -42,12 +42,12 @@ public class ProductController {
 //        return productRepository.save(product);
 //    }
 
-    @PutMapping("/product")
+    @PutMapping("/updateProduct")
     private ResponseEntity<Product> updateProduct(@RequestBody @Valid Product product) {
         return ResponseEntity.ok(productService.updateProduct(product));
     }
 
-    @DeleteMapping("/product/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<HttpStatus> deleteProductById(@PathVariable Long id) {
         productRepository.deleteById(id);
         return new ResponseEntity<HttpStatus>(HttpStatus.NO_CONTENT);
