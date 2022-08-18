@@ -33,7 +33,7 @@ public class Customer {
     private String occupation;
 
     @Column(name = "NUMERO")
-    private String NUMBER;
+    private Integer number;
 
     @Column(name = "BAIRRO")
     private String district;

@@ -37,11 +37,6 @@ public class ProductController {
         return productRepository.findById(id).get();
     }
 
-//    @PutMapping("/product")
-//    public Product updateProduct(@RequestBody Product product) {
-//        return productRepository.save(product);
-//    }
-
     @PutMapping("/updateProduct")
     private ResponseEntity<Product> updateProduct(@RequestBody @Valid Product product) {
         return ResponseEntity.ok(productService.updateProduct(product));
