@@ -8,9 +8,13 @@ const GetProduct = () => {
     fetch("http://localhost:8090/product/getAllProduct")
       .then((resp) => resp.json())
       .then((result) => {
-        setRegistration(result);
-      });
+        setRegistration(result)
+      })
   }, []);
+
+  const handleDelete = () => {
+
+  }
 
   return (
     <div>
@@ -26,6 +30,7 @@ const GetProduct = () => {
               <th>Lucro</th>
               <th>Quantidade em Estoque</th>
               <th>Fornecedor</th>
+              <th>Deletar/Atualizar</th>
             </tr>
             {registration.map((product) => (
               <tr key={product.id} className="dif">
@@ -35,6 +40,22 @@ const GetProduct = () => {
                 <td>R$ {product.gain}</td>
                 <td>{product.quantityInStock}</td>
                 <td>{product.provider}</td>
+                <td>
+                  {/* <Link
+                    className="btn"
+                    to={`/employees/edit/${product.id}`}
+                  >
+                    Update
+                  </Link> */}
+                  <button
+                    className="btn"
+                    onClick={(e) => {
+                      handleDelete(product.id);
+                    }}
+                  >
+                    Delete
+                  </button>
+                </td>
               </tr>
             ))}
           </body>
