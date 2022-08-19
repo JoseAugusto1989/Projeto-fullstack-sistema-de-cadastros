@@ -34,7 +34,7 @@ public class CustomerController {
     }
 
     @GetMapping("/getAllCustomer")
-    public ResponseEntity<Page<Customer>> getAllCustomers(@PageableDefault(page = 0, size = 10, sort = "id", direction = Sort.Direction.ASC) Pageable pageable) {
+    public ResponseEntity<Page<Customer>> getAllCustomers(Pageable pageable) {
         return ResponseEntity.status(HttpStatus.OK).body(customerService.findAll(pageable));
     }
 
