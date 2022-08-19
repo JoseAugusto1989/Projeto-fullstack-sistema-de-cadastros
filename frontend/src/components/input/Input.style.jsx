@@ -11,7 +11,7 @@ export const FloatContainer = styled.div`
 export const InputFloat = styled.input`
   width: 300px;
   height: 56px;
-  padding: 14px 16px 0 10px;
+  padding: 10px 16px 0 10px;
   outline: 0;
   border: 1px solid #ddd;
   border-radius: 4px;
