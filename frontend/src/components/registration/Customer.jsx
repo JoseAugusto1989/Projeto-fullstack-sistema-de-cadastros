@@ -1,9 +1,13 @@
 import React, { useState } from "react";
+
 import Footer from "../footer/Index";
 import Header from "../header/Index";
 import Input from "../input/Input";
+
 import { Button } from "./Button.style";
 import "./style.css";
+
+const API = "http://localhost:8090/customer/addCustomer";
 
 const RegistrationCustomer = () => {
   const [name, setName] = useState("");
@@ -30,7 +34,7 @@ const RegistrationCustomer = () => {
       city,
     };
     console.log(registration);
-    fetch("http://localhost:8090/customer/addCustomer", {
+    fetch(API, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(registration),
@@ -106,7 +110,7 @@ const RegistrationCustomer = () => {
           defaulValue={city}
           onChange={(text) => setCity(text)}
         />
-      
+
         <Input
           type="text"
           id="cpf"
