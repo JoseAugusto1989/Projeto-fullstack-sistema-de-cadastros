@@ -1,15 +1,20 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import CustomerService from "../../services/customerService";
 import Pagination from "../pagination/Pagination";
 
 const GetCustomer = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const [size, setSize] = useState(10)
-  const [page, setPage] = useState(0)
-  const [data, setData] = useState(null)
+  const [size, setSize] = useState(10);
+  const [page, setPage] = useState(0);
+  const [data, setData] = useState(null);
 
   useEffect(() => {
-    const filters = { size, page }
+    init();
+  }, [size, page]);
+
+  const init = () => {
+    const filters = { size, page };
     setIsLoading(true);
     CustomerService.getAll(filters)
       .then((result) => {
@@ -21,9 +26,18 @@ const GetCustomer = () => {
       .finally(() => {
         setIsLoading(false);
       });
-  }, [size, page]);
+  };
 
-  const handleDelete = () => {};
+  const handleDelete = (id) => {
+    CustomerService.remove(id)
+      .then((resp) => {
+        console.log("Cliente deletado com sucesso!", resp.data);
+        init();
+      })
+      .catch((error) => {
+        console.log("Algo está errado!!!", error);
+      });
+  };
 
   if (isLoading) {
     return (
@@ -38,7 +52,13 @@ const GetCustomer = () => {
       <h3>Lista de Clientes</h3>
       <hr />
       <div>
-        <Pagination page={page} setPage={setPage} size={size} setSize={setSize} data={data} />
+        <Pagination
+          page={page}
+          setPage={setPage}
+          size={size}
+          setSize={setSize}
+          data={data}
+        />
         <table>
           <tbody>
             <tr>
@@ -67,7 +87,12 @@ const GetCustomer = () => {
                   <td>{customer.district}</td>
                   <td>{customer.city}</td>
                   <td>
-                    {/* <Link className="btn btn-info ml-4" to={`/employees/edit/${customer.id}`}>Update</Link> */}
+                    <Link
+                      className="btn btn-info ml-4"
+                      to={`/employees/edit/${customer.id}`}
+                    >
+                      Update
+                    </Link>
                     <button
                       className="btn btn-danger ml-4"
                       onClick={(e) => {

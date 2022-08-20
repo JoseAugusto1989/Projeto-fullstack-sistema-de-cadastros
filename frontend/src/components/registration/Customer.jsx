@@ -21,8 +21,29 @@ import {
   TextRegistration,
 } from "./Customer.style";
 import "./style.css";
+import * as yup from "yup";
 
 const API = "http://localhost:8090/customer/addCustomer";
+
+// const schema = yup.object({
+//   name: yup.string().required("O campo é obrigatório"),
+//   lastName: yup.string().required("O campo é obrigatório"),
+//   email: yup
+//     .string()
+//     .email("Digite um email válido")
+//     .required("O campo é obrigatório"),
+//   phone: yup.string().required("O campo é obrigatório"),
+//   address: yup.string().required("O campo é obrigatório"),
+//   cpf: yup
+//     .string()
+//     .cpf("Digite um CPF válido")
+//     .required("O campo é obrigatório"),
+//   occupation: yup.string().required("O campo é obrigatório"),
+//   number: yup.string().required("O campo é obrigatório"),
+//   district: yup.string().required("O campo é obrigatório"),
+//   city: yup.string().required("O campo é obrigatório"),
+// })
+// .required();
 
 const RegistrationCustomer = () => {
   const [name, setName] = useState("");
@@ -35,6 +56,10 @@ const RegistrationCustomer = () => {
   const [number, setNumber] = useState("");
   const [district, setDistrict] = useState("");
   const [city, setCity] = useState("");
+
+  const checkList = () => {
+
+  }
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -179,6 +204,7 @@ const RegistrationCustomer = () => {
               Cadastrar
             </Button>
           </ButtonStyle>
+          <button>Verificar Lista</button>
         </form>
       </CenterDiv>
       <Footer />
