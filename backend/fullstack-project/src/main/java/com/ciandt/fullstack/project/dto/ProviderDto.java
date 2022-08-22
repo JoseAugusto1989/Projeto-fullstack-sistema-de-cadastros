@@ -4,11 +4,10 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 
 @Getter
 @Setter
-public class CustomerDto {
+public class ProviderDto {
 
     @NotBlank
     private String name;
@@ -17,27 +16,14 @@ public class CustomerDto {
     private String lastName;
 
     @NotBlank
-    private String email;
-
-    @NotBlank
     private String phone;
 
     @NotBlank
-    private String address;
+    private String email;
 
     @NotBlank
-    private String cpf;
+    private String companyName;
 
     @NotBlank
-    private String occupation;
-
-    @NotNull
-    private Integer number;
-
-    @NotBlank
-    private String district;
-
-    @NotBlank
-    private String city;
-
+    private String cnpj;
 }

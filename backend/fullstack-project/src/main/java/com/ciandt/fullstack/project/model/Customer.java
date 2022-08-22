@@ -17,6 +17,9 @@ public class Customer {
     @Column(name="NOME")
     private String name;
 
+    @Column(name = "SOBRENOME")
+    private String lastName;
+
     @Column(name="EMAIL")
     private String email;
 
