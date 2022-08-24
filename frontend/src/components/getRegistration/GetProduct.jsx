@@ -1,27 +1,58 @@
 import React, { useEffect, useState } from "react";
+
+import ProductService from "../../services/productService";
+import Pagination from "../pagination/Pagination";
 import "./styles.css";
 
 const GetProduct = () => {
-  const [registration, setRegistration] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [size, setSize] = useState(10);
+  const [page, setPage] = useState(0);
+  const [data, setData] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:8090/product/getAllProduct")
-      .then((resp) => resp.json())
+    init();
+  }, [size, page]);
+
+  const init = () => {
+    const filters = { size, page };
+    setIsLoading(true);
+    ProductService.getAll(filters)
       .then((result) => {
-        setRegistration(result)
+        setData(result.data);
       })
-  }, []);
+      .catch((error) => {
+        console.log(error);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  };
+  console.log(data)
 
-  const handleDelete = () => {
-
+  if (isLoading) {
+    return (
+      <div>
+        <h1>Carregando Lista de clientes...</h1>
+      </div>
+    );
   }
+
+  const handleDelete = () => {};
 
   return (
     <div>
       <h3>Lista de Produtos</h3>
       <hr />
       <div>
-        <table border="1px" cellpadding="5px" cellspacing="0" id="alter">
+        <Pagination
+          page={page}
+          setPage={setPage}
+          size={size}
+          setSize={setSize}
+          data={data}
+        />
+        <table>
           <body>
             <tr>
               <th>Nome do Produto</th>
@@ -32,8 +63,13 @@ const GetProduct = () => {
               <th>Fornecedor</th>
               <th>Deletar/Atualizar</th>
             </tr>
-            {registration.map((product) => (
-              <tr key={product.id} className="dif">
+
+            {data?.content && 
+              data.content.length > 0 &&
+              data.content.map((product) => (
+
+              <tr key={product.id}>
+
                 <td>{product.name}</td>
                 <td>R$ {product.salePrice}</td>
                 <td>R$ {product.purchasePrice}</td>
@@ -48,7 +84,6 @@ const GetProduct = () => {
                     Update
                   </Link> */}
                   <button
-                    className="btn"
                     onClick={(e) => {
                       handleDelete(product.id);
                     }}

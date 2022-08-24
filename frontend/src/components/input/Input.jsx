@@ -1,33 +1,45 @@
 import React, { useState } from "react";
-import { FloatContainer, InputFloat, LabelFloat } from "./Input.style";
-import "../registration/style.css"
+import { useFormContext } from "react-hook-form";
+import { ErrorMessage } from "@hookform/error-message";
 
-const Input = ({ type, name, defaultValue, id, onChange = () => {}, label }) => {
+import { FloatContainer, InputFloat, LabelFloat, MessageError } from "./Input.style";
+import "../registration/style.css";
+
+const Input = ({ type, name = "", id, label }) => {
   const [isActive, setIsActive] = useState(false);
+  const {
+    register,
+    setValue,
+    formState: { errors },
+  } = useFormContext();
 
-  function handleChange(text) {
-    onChange(text);
-
-    if (text !== "") {
-      setIsActive(true);
-    } else {
-      setIsActive(false);
-    }
-  }
+  console.log(errors);
 
   return (
-    <FloatContainer id="float-label">
-      <InputFloat
+    <>
+      <FloatContainer id="float-label">
+        <InputFloat
+          name={name}
+          type={type}
+          id={id}
+          {...register(name, {
+            required: true,
+            onChange: (e) => {
+              setValue(name, e.target.value);
+              setIsActive(true);
+            },
+          })}
+        />
+        <LabelFloat className={isActive ? "Active" : ""} htmlfor={name}>
+          {label}
+        </LabelFloat>
+      </FloatContainer>
+      <ErrorMessage
+        errors={errors}
         name={name}
-        type={type}
-        id={id}
-        value={defaultValue}
-        onChange={(e) => handleChange(e.target.value)}
+        render={({ message }) => <MessageError>{message}</MessageError>}
       />
-      <LabelFloat className={isActive ? "Active" : ""} htmlFor={name}>
-        {label}
-      </LabelFloat>
-    </FloatContainer>
+    </>
   );
 };
 

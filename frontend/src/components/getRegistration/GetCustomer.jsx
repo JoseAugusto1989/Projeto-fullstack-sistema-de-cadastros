@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+
 import CustomerService from "../../services/customerService";
 import Pagination from "../pagination/Pagination";
 
@@ -73,10 +73,13 @@ const GetCustomer = () => {
               <th>Cidade</th>
               <th>Deletar/Atualizar</th>
             </tr>
+
             {data?.content &&
               data.content.length > 0 &&
               data.content.map((customer) => (
+
                 <tr key={customer.id}>
+                  
                   <td>{customer.name}</td>
                   <td>{customer.email}</td>
                   <td>{customer.phone}</td>
@@ -87,14 +90,13 @@ const GetCustomer = () => {
                   <td>{customer.district}</td>
                   <td>{customer.city}</td>
                   <td>
-                    <Link
+                    {/* <Link
                       className="btn btn-info ml-4"
                       to={`/employees/edit/${customer.id}`}
                     >
                       Update
-                    </Link>
+                    </Link> */}
                     <button
-                      className="btn btn-danger ml-4"
                       onClick={(e) => {
                         handleDelete(customer.id);
                       }}

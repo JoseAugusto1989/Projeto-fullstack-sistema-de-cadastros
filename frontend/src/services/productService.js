@@ -1,10 +1,11 @@
 import httpClient from "./http-common";
+import queryHelpers from "../helpers/queryHelpers";
 
 const endpoint = "product";
 
 const ProductService = {
-  getAll: () => {
-    return httpClient.get(`/${endpoint}/getAllProduct`);
+  getAll: (filters) => {
+    return httpClient.get(`/${endpoint}/getAllProduct?${queryHelpers(filters)}`);
   },
 
   get: (id) => {

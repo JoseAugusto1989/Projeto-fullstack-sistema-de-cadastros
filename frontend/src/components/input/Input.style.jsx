@@ -41,3 +41,8 @@ export const LabelFloat = styled.label`
     transform: translate(0, 12px) scale(0.75);
   }
 `;
+
+export const MessageError = styled.p`
+  color: red;
+  padding: 90px 0 10px 0;
+`
