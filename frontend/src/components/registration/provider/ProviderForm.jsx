@@ -1,5 +1,6 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm, FormProvider } from "react-hook-form";
+import { Link } from "react-router-dom";
 import * as yup from "yup";
 
 import ProviderService from "../../../services/providerService";
@@ -19,8 +20,14 @@ const schema = yup
   .object({
     name: yup.string().required(text),
     lastName: yup.string().required(text),
-    phone: yup.string().required(text),
-    email: yup.string().email(text).required(text),
+    phone: yup
+      .string()
+      .required(text)
+      .matches(
+        /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/,
+        "Número de telefone inválido!"
+      ),
+    email: yup.string().email("Digite um email válido").required(text),
     companyName: yup.string().required(text),
     cnpj: yup.string().required(text),
   })
@@ -84,9 +91,11 @@ const ProviderForm = () => {
           <Row>
             <ButtonStyle>
               <Button disableElevation>Cadastrar</Button>
-              <ButtonCheckList>Verificar Lista</ButtonCheckList>
             </ButtonStyle>
           </Row>
+          <ButtonCheckList>
+            <Link to="/providerListItens">Verificar Lista</Link>
+          </ButtonCheckList>
         </Content>
       </form>
     </FormProvider>

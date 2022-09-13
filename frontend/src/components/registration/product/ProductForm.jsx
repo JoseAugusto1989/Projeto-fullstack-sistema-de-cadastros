@@ -1,27 +1,30 @@
-import { yupResolver } from "@hookform/resolvers/yup";
-import { useEffect } from "react";
-import { useForm, FormProvider } from "react-hook-form";
-import * as yup from "yup";
+import { yupResolver } from '@hookform/resolvers/yup';
+import { FormProvider, useForm } from 'react-hook-form';
+import { Link } from 'react-router-dom';
+import * as yup from 'yup';
 
-import ProductService from "../../../services/productService";
-
-import Input from "../../input/Input";
-import { Button, ButtonCheckList } from "../Button.style";
-import {
-  Content,
-  TextRegistration,
-  Row,
-  ButtonStyle,
-} from "../customer/Customer.style";
+import ProductService from '../../../services/productService';
+import Input from '../../input/Input';
+import { Button, ButtonCheckList } from '../Button.style';
+import { ButtonStyle, Content, Row, TextRegistration } from '../customer/Customer.style';
 
 const text = "O campo é obrigatório";
 
 const schema = yup
   .object({
     name: yup.string().required(text),
-    salePrice: yup.number().required(text),
-    purchasePrice: yup.number().required(text),
-    quantityInStock: yup.number().required(text),
+    salePrice: yup
+      .number()
+      .required(text)
+      .positive("O número deve ser positivo."),
+    purchasePrice: yup
+      .number()
+      .required(text)
+      .positive("O número deve ser positivo."),
+    quantityInStock: yup
+      .number()
+      .required(text)
+      .positive("O número deve ser positivo."),
   })
   .required();
 
@@ -86,8 +89,10 @@ const ProductForm = () => {
             <ButtonStyle>
               <Button disableElevation>Cadastrar</Button>
             </ButtonStyle>
-            <ButtonCheckList>Verificar Lista</ButtonCheckList>
           </Row>
+          <ButtonCheckList>
+            <Link to="/productListItens">Verificar Lista</Link>
+          </ButtonCheckList>
         </Content>
       </form>
     </FormProvider>

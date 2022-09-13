@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from "react";
+import './styles.css';
 
-import ProductService from "../../services/productService";
-import Pagination from "../pagination/Pagination";
-import "./styles.css";
+import React, { useEffect, useState } from 'react';
+
+import ProductService from '../../services/productService';
+import Pagination from '../pagination/Pagination';
+import GetProductsChart from '../google-charts/GetProductsChart';
 
 const GetProduct = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -33,7 +35,7 @@ const GetProduct = () => {
   if (isLoading) {
     return (
       <div>
-        <h1>Carregando Lista de clientes...</h1>
+        <h1>Carregando Lista de produtos...</h1>
       </div>
     );
   }
@@ -96,6 +98,7 @@ const GetProduct = () => {
           </body>
         </table>
       </div>
+      <GetProductsChart data={data} />
     </div>
   );
 };
